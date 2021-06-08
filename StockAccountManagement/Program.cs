@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace StockAccountManagement
 {
@@ -65,7 +66,14 @@ namespace StockAccountManagement
                 stock3.stockPrice,stock4.stockPrice}
             };
             StockPortfolio.stockPortfolioList.Add(stockPortfolio);
+            //displaying the stock portfolio
             stockPortfolio.PortFolioView();
+            //writing the portfolio account to file
+            stockPortfolio.WriteFile();
+            Console.WriteLine("File Write Successful");
+
+
         }
+
     }
 }

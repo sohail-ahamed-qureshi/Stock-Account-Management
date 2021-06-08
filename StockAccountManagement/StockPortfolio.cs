@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace StockAccountManagement
@@ -50,6 +51,26 @@ namespace StockAccountManagement
                 Console.WriteLine(e.Message);
             }
             
+        }
+        /// <summary>
+        /// using streamwriter for writing details to file from list
+        /// </summary>
+        public void WriteFile()
+        {
+            //file path for writing and reading details
+            string filepath = @"C:\Users\Admin\Desktop\BridgeLabs Assignments\Stock Account Management\Stock-Account-Management\StockAccountManagement\bin\Debug\netcoreapp3.1\Sohail.txt";
+
+            using StreamWriter streamWriter = new StreamWriter(filepath);
+            streamWriter.WriteLine(StockHolder);
+            int i = 0;
+            foreach (StockPortfolio st in stockPortfolioList)
+            {
+                while (i <= 4)
+                {
+                    streamWriter.WriteLine(st.portStockName[i] + "\t" + st.portNumberOfShare[i]);
+                    i++;
+                }
+            }
         }
     }
 }
