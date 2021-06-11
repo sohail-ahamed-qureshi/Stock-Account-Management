@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace StockAccountManagement
@@ -7,55 +9,63 @@ namespace StockAccountManagement
     class Stock
     {
         /// <summary>
-        /// each Stock has properties like name, number od shares and share price.
-        /// this stocks are stored in
+        /// Each Stock has properties like name, number od shares and share price.
+        /// this stocks are stored in StockAccountData.json file.
+        /// GetStockDetails() method is used to access the stock details inside the json file.
         /// </summary>
-        public string stockName { get; set; }
-        public int numberOfStocks { get; set; }
-        public float stockPrice { get; set; }
-
-        public static List<Stock> stockList = new List<Stock>();
-        /// <summary>
-        /// View the Stocks available in the Market
-        /// </summary>
-        public void StockView()
+        public void GetStockDetails()
         {
+            //variables
+            int valueOfStock, totalValueOfStock=0;
+            //json filepath
+            string filepath = @"C:\Users\Admin\Desktop\BridgeLabs Assignments\Stock Account Management\Stock-Account-Management\StockAccountManagement\StockAccountData.json";
+            
+            var jsonOutput = File.ReadAllText(filepath);
+            var jObject = JObject.Parse(jsonOutput);
+            var stockArray = (JArray)jObject["stock account"];
             try
             {
-                float totalStockValue = 0;
-                float valueOfStock;
-                Console.WriteLine();
-                Console.WriteLine("\t\t\tStock Market");
-                Console.WriteLine();
-                Console.WriteLine("Stock Name   Number of Shares   Share Price in .Rs  Value of Stock in.Rs");
-                foreach (Stock st in stockList)
+                if (jObject != null)
                 {
+                    Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Stock Report~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     Console.WriteLine();
-                    Console.WriteLine($"{st.stockName}\t\t{st.numberOfStocks}\t\t\t{st.stockPrice} \t\t" +
-                        $"{valueOfStock = ValueOfStock(st.stockPrice, st.numberOfStocks)}");
-                    totalStockValue += TotalValue(valueOfStock);
+                    Console.WriteLine("Stock Name   Number of Shares   Share Price in .Rs  Value of Stock .Rs");
+                    foreach (var item in stockArray)
+                    {
+                        valueOfStock = GetValueOfStock(item["numberofstocks"], item["stockprice"]);
+                        totalValueOfStock += valueOfStock;
+                        Console.WriteLine();
+                        Console.WriteLine($"  {item["stockname"]}\t\t{item["numberofstocks"]}\t\t\t{item["stockprice"]}\t\t{valueOfStock}");
+                    }
+                    Console.WriteLine("-------------------------------------------------------------------");
+                    Console.WriteLine($"                                 Total Value of Stocks: {totalValueOfStock}");
                 }
-                Console.WriteLine("---------------------------------------------------------------------");
-                Console.WriteLine($"Total Stock Value(.Rs)\t\t\t\t\t{totalStockValue}");
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            
         }
         /// <summary>
-        /// methods to calculate total value and value of each stocks
+        /// Calculation of value of each stock from json file
         /// </summary>
-        public float ValueOfStock(float shareprice, int numberOfShares)
+        /// <param name="numOfShares"></param>
+        /// <param name="stockPrice"></param>
+        /// <returns></returns>
+        internal int GetValueOfStock(JToken numOfShares, JToken stockPrice)
         {
-            float valueOfStock = shareprice * numberOfShares;
+            int convNumOfShares = numOfShares.ToObject<int>();
+            int convStockPrice = stockPrice.ToObject<int>();
+            int valueOfStock=0;
+            try
+            {
+                valueOfStock = convNumOfShares * convStockPrice;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return valueOfStock;
-        }
-        public float TotalValue(float valueOfStock)
-        {
-            float totalValueOfStocks =+ valueOfStock;
-            return totalValueOfStocks;
-        }
+        } 
     }
 }

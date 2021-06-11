@@ -1,0 +1,29 @@
+{
+  "stock account": [
+    {
+      "stockname": "IBM",
+      "numberofstocks": 100,
+      "stockprice": 20
+    },
+    {
+      "stockname": "RIL",
+      "numberofstocks": 1000,
+      "stockprice": 40
+    },
+    {
+      "stockname": "ABC",
+      "numberofstocks": 50,
+      "stockprice": 30
+    },
+    {
+      "stockname": "TCS",
+      "numberofstocks": 1000,
+      "stockprice": 50
+    },          
+    {
+      "stockname": "INFY",
+      "numberofstocks": 500,
+      "stockprice": 40
+    }
+  ]
+}
