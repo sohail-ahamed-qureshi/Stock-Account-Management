@@ -29,16 +29,16 @@ namespace StockAccountManagement
                 {
                     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Stock Report~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     Console.WriteLine();
-                    Console.WriteLine("Stock Name   Number of Shares   Share Price in .Rs  Value of Stock .Rs");
+                    Console.WriteLine("Stock Name     Symbol  Number of Shares   Share Price $  Value of Stock $");
                     foreach (var item in stockArray)
                     {
                         valueOfStock = GetValueOfStock(item["numberofstocks"], item["stockprice"]);
                         totalValueOfStock += valueOfStock;
                         Console.WriteLine();
-                        Console.WriteLine($"  {item["stockname"]}\t\t{item["numberofstocks"]}\t\t\t{item["stockprice"]}\t\t{valueOfStock}");
+                        Console.WriteLine($"  {item["stockname"]}\t{item["symbol"]}  \t{item["numberofstocks"]}\t\t\t${item["stockprice"]}\t\t${valueOfStock}");
                     }
                     Console.WriteLine("-------------------------------------------------------------------");
-                    Console.WriteLine($"                                 Total Value of Stocks: {totalValueOfStock}");
+                    Console.WriteLine($"                                      Total Value of Stocks: ${totalValueOfStock}");
                 }
             }
             catch(Exception e)

@@ -21,6 +21,9 @@ namespace StockAccountManagement
         {
             Stock stock = new Stock();
             stock.GetStockDetails();
+
+            StockAccount stockAccount = new StockAccount();
+            stockAccount.Buy(1000, "IBM");
         }
     }
 }

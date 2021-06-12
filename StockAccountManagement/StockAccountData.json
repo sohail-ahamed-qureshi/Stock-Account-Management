@@ -1,27 +1,32 @@
 {
   "stock account": [
     {
-      "stockname": "IBM",
+      "stockname": "IntrBM",
+      "symbol": "IBM",
       "numberofstocks": 100,
       "stockprice": 20
     },
     {
-      "stockname": "RIL",
+      "stockname": "Reliance",
+      "symbol": "RIL",
       "numberofstocks": 1000,
       "stockprice": 40
     },
     {
-      "stockname": "ABC",
+      "stockname": "AB Company",
+      "symbol": "ABC",
       "numberofstocks": 50,
       "stockprice": 30
     },
     {
-      "stockname": "TCS",
+      "stockname": "Tata CS",
+      "symbol": "TCS",
       "numberofstocks": 1000,
       "stockprice": 50
-    },          
+    },
     {
-      "stockname": "INFY",
+      "stockname": "Infosys",
+      "symbol": "INFY",
       "numberofstocks": 500,
       "stockprice": 40
     }
