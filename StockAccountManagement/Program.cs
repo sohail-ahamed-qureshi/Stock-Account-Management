@@ -19,6 +19,8 @@ namespace StockAccountManagement
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            StockAccountManagement management = new StockAccountManagement();
+            management.GetStockDetails();
         }
     }
 }
