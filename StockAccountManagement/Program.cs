@@ -21,6 +21,19 @@ namespace StockAccountManagement
         {
             StockAccountManagement management = new StockAccountManagement();
             management.GetStockDetails();
+            StockPortfolio portfolio = new StockPortfolio("Sohail", 123, 500);
+
+            Console.WriteLine("Enter the symbol: ");
+            string stockSymbol = Console.ReadLine();
+            Console.WriteLine("Enter the price: ");
+            double price = Convert.ToInt64(Console.ReadLine());
+
+            Stock stock =  management.Buy(stockSymbol, price);
+            portfolio.cash -= price;
+            portfolio.stocksList.Add(stock);
+            portfolio.DisplayPortfolio();
+
+
         }
     }
 }

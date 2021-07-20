@@ -9,7 +9,7 @@ namespace StockAccountManagement
     class StockAccountManagement
     {
         string filepath = @"C:\Users\Admin\Desktop\BridgeLabs Assignments\Stock Account Management\Stock-Account-Management\StockAccountManagement\StockAccountData.json";
-
+        List<Stock> stocks;
         public void GetStockDetails()
         {
             try
@@ -18,7 +18,7 @@ namespace StockAccountManagement
                 {
                     string stockData = File.ReadAllText(filepath);
                     Root root = JsonConvert.DeserializeObject<Root>(stockData);
-                    List<Stock> stocks = root.StockAccount;
+                    stocks = root.StockAccount;
                     foreach (Stock stock in stocks)
                     {
                         Console.WriteLine($"Stock Name: {stock.Stockname}\n Symbol: {stock.Symbol}\n Number of Stocks: {stock.Numberofstocks}\n Stock Price: {stock.Stockprice}");
@@ -36,5 +36,29 @@ namespace StockAccountManagement
                 Console.WriteLine(e.Message);
             }
         }
+
+        public Stock Buy(string symbol, double price)
+        {
+            if(price > 0)
+            {
+                foreach (Stock stock in stocks)
+                {
+                    if (stock.Symbol.Contains(symbol) && stock.Numberofstocks >= 1)
+                    {
+                        int buyStocks = (int)(price /stock.Stockprice);
+                        stock.Numberofstocks -= buyStocks;
+                        Console.WriteLine("Buy SuccessFull");
+                        Console.WriteLine($"Stock Name: {stock.Stockname}\n Symbol: {stock.Symbol}\n Number of Stocks: {stock.Numberofstocks}\n Stock Price: {stock.Stockprice}");
+                        return new Stock() { Stockname = stock.Stockname, Symbol = stock.Symbol, Numberofstocks = buyStocks, Stockprice = stock.Stockprice };
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid price!!");
+            }
+            return null;
+        }
+        
     }
 }
