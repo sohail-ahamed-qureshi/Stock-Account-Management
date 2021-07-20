@@ -19,11 +19,8 @@ namespace StockAccountManagement
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Stock stock = new Stock();
-            stock.GetStockDetails();
-
             StockAccount stockAccount = new StockAccount();
-            stockAccount.Buy(1000, "IBM");
+            stockAccount.GetStockDetails();
         }
     }
 }

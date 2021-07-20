@@ -1,7 +1,7 @@
 {
   "stock account": [
     {
-      "stockname": "IntrBM",
+      "stockname": "IBM",
       "symbol": "IBM",
       "numberofstocks": 100,
       "stockprice": 20
@@ -13,13 +13,13 @@
       "stockprice": 40
     },
     {
-      "stockname": "AB Company",
+      "stockname": "Alphabet Company",
       "symbol": "ABC",
       "numberofstocks": 50,
       "stockprice": 30
     },
     {
-      "stockname": "Tata CS",
+      "stockname": "Tata Consultancy Services",
       "symbol": "TCS",
       "numberofstocks": 1000,
       "stockprice": 50
