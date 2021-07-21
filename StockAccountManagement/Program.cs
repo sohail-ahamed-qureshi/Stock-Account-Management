@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 
 namespace StockAccountManagement
-{  
+{
     class Program
     {
         /// <summary>
@@ -28,10 +28,15 @@ namespace StockAccountManagement
             Console.WriteLine("Enter the price: ");
             double price = Convert.ToInt64(Console.ReadLine());
 
-            Stock stock =  management.Buy(stockSymbol, price);
+            Stock stock = management.Buy(stockSymbol, price);
             portfolio.cash -= price;
             portfolio.stocksList.Add(stock);
             portfolio.DisplayPortfolio();
+
+            portfolio = management.Sell("ABC", 30, portfolio);
+            portfolio.DisplayPortfolio();
+
+
 
 
         }

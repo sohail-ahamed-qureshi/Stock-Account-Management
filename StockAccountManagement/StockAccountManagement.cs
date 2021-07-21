@@ -59,6 +59,40 @@ namespace StockAccountManagement
             }
             return null;
         }
-        
+
+        public StockPortfolio Sell(string symbol, double price, StockPortfolio portfolio)
+        {
+            if(portfolio.stocksList.Count >= 1 && price >=0)
+            {
+                foreach(Stock stock in portfolio.stocksList)
+                {
+                    if (stock.Symbol.Contains(symbol) && stock.Numberofstocks >=1 )
+                    {
+                        int sellStocks = (int)price / stock.Stockprice;
+                        stock.Numberofstocks -= sellStocks;
+                        portfolio.cash += price;
+                        UpdateStockAccount(sellStocks, symbol);
+                        Console.WriteLine("Sell Successfull");
+                        return portfolio;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Available stocks to sell!!");
+            }
+            return null;
+        }
+
+        private void UpdateStockAccount(int sellStocks, string symbol)
+        {
+            foreach (Stock stock in stocks)
+            {
+                if (stock.Symbol.Contains(symbol))
+                {
+                    stock.Numberofstocks += sellStocks;
+                }
+            }
+        }
     }
 }
